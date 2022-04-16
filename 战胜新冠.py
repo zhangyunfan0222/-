@@ -8,11 +8,15 @@
 from random import randrange
 from turtle import *
 from freegames import vector
+import math
+
 
 
 wn = Screen()
 wn.addshape('res/virus.gif')
-wn.addshape('res/vaccine.gif')
+
+for i in range(10):
+    wn.addshape(f'res/vaccines/vaccine_{i}.gif')
 
 
 ball = vector(-200, -200)
@@ -23,17 +27,22 @@ turtles = []
 
 tr_vaccine = Turtle()
 tr_vaccine.penup()
-tr_vaccine.shape('res/vaccine.gif')
+tr_vaccine.shape('res/vaccines/vaccine_0.gif')
+degree = 0.0
 
 
 
 def tap(x, y):
     """Respond to screen tap."""
+    
+    
     if not inside(ball):
         ball.x = -199
         ball.y = -199
         speed.x = (x + 200) / 10
         speed.y = (y + 200) / 10
+        degree = math.atan2(y+199,x+199)/math.pi*180
+        tr_vaccine.shape(f'res/vaccines/vaccine_{round(degree/10)}.gif')
 
 
 def inside(xy):
@@ -75,8 +84,6 @@ def move():
         speed.y -= 0.35
         ball.move(speed)
 
-    print(targets)
-
 
     for i, target in enumerate(targets):
         if abs(target - ball) < 30:
@@ -92,7 +99,7 @@ def move():
         if not inside(target):
             return
 
-    ontimer(move, 1)
+    ontimer(move, 10)
 
 
 setup(420, 420, 370, 0)
