@@ -11,6 +11,7 @@ from freegames import vector
 
 wn = Screen()
 wn.addshape('res/virus.gif')
+wn.addshape('res/vaccine.gif')
 
 
 ball = vector(-200, -200)
@@ -19,13 +20,19 @@ targets = []
 turtles = []
 
 
+tr_vaccine = Turtle()
+tr_vaccine.penup()
+tr_vaccine.shape('res/vaccine.gif')
+
+
+
 def tap(x, y):
     """Respond to screen tap."""
     if not inside(ball):
         ball.x = -199
         ball.y = -199
-        speed.x = (x + 200) / 25
-        speed.y = (y + 200) / 25
+        speed.x = (x + 200) / 10
+        speed.y = (y + 200) / 10
 
 
 def inside(xy):
@@ -42,15 +49,14 @@ def draw():
         
 
     if inside(ball):
-        goto(ball.x, ball.y)
-        dot(6, 'red')
+        tr_vaccine.goto(ball.x, ball.y)
 
     update()
 
 
 def move():
     """Move ball and targets."""
-    if randrange(40) == 0:
+    if randrange(10) == 0:
         y = randrange(-150, 150)
         target = vector(200, y)
         targets.append(target)
@@ -72,7 +78,7 @@ def move():
 
 
     for i, target in enumerate(targets):
-        if abs(target - ball) < 20:
+        if abs(target - ball) < 30:
             del targets[i]
             turtles[i].ht()
             del turtles[i]
@@ -85,7 +91,7 @@ def move():
         if not inside(target):
             return
 
-    ontimer(move, 50)
+    ontimer(move, 1)
 
 
 setup(420, 420, 370, 0)
