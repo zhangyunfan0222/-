@@ -1,13 +1,17 @@
 # 1. 安装freegames,  pip install freegames
 # 2. 选择Cannon游戏作为模板
 #        https://grantjenks.com/docs/freegames/#cannon
+# 3. 添加新冠病毒图片
 #
-
 
 from random import randrange
 from turtle import *
-
 from freegames import vector
+
+
+wn = Screen()
+wn.addshape('res/virus.gif')
+
 
 ball = vector(-200, -200)
 speed = vector(0, 0)
@@ -34,7 +38,10 @@ def draw():
 
     for target in targets:
         goto(target.x, target.y)
-        dot(20, 'blue')
+        tr = Turtle()
+        tr.shape('res/virus.gif')
+        tr.goto(target.x, target.y)
+        
 
     if inside(ball):
         goto(ball.x, ball.y)
