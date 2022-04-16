@@ -2,7 +2,8 @@
 # 2. 选择Cannon游戏作为模板
 #        https://grantjenks.com/docs/freegames/#cannon
 # 3. 添加新冠病毒图片
-#
+# 4. 发射疫苗，干掉病毒
+
 
 from random import randrange
 from turtle import *
