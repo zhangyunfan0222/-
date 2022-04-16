@@ -16,6 +16,7 @@ wn.addshape('res/virus.gif')
 ball = vector(-200, -200)
 speed = vector(0, 0)
 targets = []
+turtles = []
 
 
 def tap(x, y):
@@ -36,11 +37,8 @@ def draw():
     """Draw ball and targets."""
     clear()
 
-    for target in targets:
-        goto(target.x, target.y)
-        tr = Turtle()
-        tr.shape('res/virus.gif')
-        tr.goto(target.x, target.y)
+    for i, target in enumerate(targets):
+        turtles[i].goto(target.x, target.y)
         
 
     if inside(ball):
@@ -57,6 +55,12 @@ def move():
         target = vector(200, y)
         targets.append(target)
 
+        tr = Turtle()
+        tr.penup()
+        tr.shape('res/virus.gif')
+        tr.goto(target.x, target.y)
+        turtles.append(tr)
+
     for target in targets:
         target.x -= 0.5
 
@@ -64,12 +68,16 @@ def move():
         speed.y -= 0.35
         ball.move(speed)
 
-    dupe = targets.copy()
-    targets.clear()
+    print(targets)
 
-    for target in dupe:
-        if abs(target - ball) > 13:
-            targets.append(target)
+
+    for i, target in enumerate(targets):
+        if abs(target - ball) < 20:
+            del targets[i]
+            turtles[i].ht()
+            del turtles[i]
+            break
+            
 
     draw()
 
