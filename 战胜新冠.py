@@ -11,6 +11,13 @@ from freegames import vector
 import math
 
 
+ball = vector(-200, -200)
+speed = vector(0, 0)
+targets = []
+turtles = []
+total_virus = 100
+current_virus = 0
+
 
 wn = Screen()
 wn.addshape('res/virus.gif')
@@ -20,13 +27,6 @@ for i in range(10):
 
 wn.addshape('res/campus/girl.gif')
 wn.addshape('res/campus/boy.gif')
-
-
-
-ball = vector(-200, -200)
-speed = vector(0, 0)
-targets = []
-turtles = []
 
 
 tr_medicine = Turtle()
@@ -87,7 +87,8 @@ def draw():
 
 def move():
     """Move ball and targets."""
-    if randrange(10) == 0:
+    global total_virus, current_virus
+    if randrange(10) == 0 and current_virus < total_virus:
         y = randrange(-150, 150)
         target = vector(200, y)
         targets.append(target)
@@ -97,6 +98,8 @@ def move():
         tr.shape('res/virus.gif')
         tr.goto(target.x, target.y)
         turtles.append(tr)
+
+        current_virus = current_virus + 1
 
     for target in targets:
         target.x -= 0.5
