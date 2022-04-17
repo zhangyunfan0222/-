@@ -17,40 +17,38 @@ targets = []
 turtles = []
 total_virus = 100
 current_virus = 0
-
-
-wn = Screen()
-wn.addshape('res/virus.gif')
-
-for i in range(10):
-    wn.addshape(f'res/medicines/medicine_{i}.gif')
-
-wn.addshape('res/campus/girl.gif')
-wn.addshape('res/campus/boy.gif')
-
-
 tr_medicine = Turtle()
-tr_medicine.ht()
-tr_medicine.penup()
-tr_medicine.shape('res/medicines/medicine_0.gif')
-tr_medicine.goto(-199, -199)
-tr_medicine.st()
-degree = 0.0
-
-
+tr_medicine_degree = 0.0
 tr_girl = Turtle()
-tr_girl.ht()
-tr_girl.penup()
-tr_girl.shape('res/campus/girl.gif')
-tr_girl.goto(-160, 100)
-tr_girl.st()
-
 tr_boy = Turtle()
-tr_boy.ht()
-tr_boy.penup()
-tr_boy.shape('res/campus/boy.gif')
-tr_boy.goto(-160, -100)
-tr_boy.st()
+
+def add_shapes():
+    addshape('res/virus.gif')
+
+    for i in range(10):
+        addshape(f'res/medicines/medicine_{i}.gif')
+
+    addshape('res/campus/girl.gif')
+    addshape('res/campus/boy.gif')
+
+def init_turtles():
+    tr_medicine.ht()
+    tr_medicine.penup()
+    tr_medicine.shape('res/medicines/medicine_0.gif')
+    tr_medicine.goto(-199, -199)
+    tr_medicine.st()
+
+    tr_girl.ht()
+    tr_girl.penup()
+    tr_girl.shape('res/campus/girl.gif')
+    tr_girl.goto(-160, 100)
+    tr_girl.st()
+
+    tr_boy.ht()
+    tr_boy.penup()
+    tr_boy.shape('res/campus/boy.gif')
+    tr_boy.goto(-160, -100)
+    tr_boy.st()
 
 
 def tap(x, y):
@@ -62,8 +60,8 @@ def tap(x, y):
         ball.y = -199
         speed.x = (x + 200) / 10
         speed.y = (y + 200) / 10
-        degree = math.atan2(y+199,x+199)/math.pi*180
-        tr_medicine.shape(f'res/medicines/medicine_{round(degree/10)}.gif')
+        tr_medicine_degree = math.atan2(y+199,x+199)/math.pi*180
+        tr_medicine.shape(f'res/medicines/medicine_{round(tr_medicine_degree/10)}.gif')
 
 
 def inside(xy):
@@ -127,6 +125,8 @@ def move():
 
 
 setup(420, 420, 370, 0)
+add_shapes()
+init_turtles()
 hideturtle()
 up()
 tracer(False)
