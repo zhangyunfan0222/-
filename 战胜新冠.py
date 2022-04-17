@@ -148,6 +148,7 @@ def move():
 
 
 setup(420, 420, 370, 0)
+title("战胜新冠 1.0")
 add_shapes()
 init_turtles()
 hideturtle()
