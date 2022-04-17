@@ -25,9 +25,9 @@ targets = []
 turtles = []
 
 
-tr_vaccine = Turtle()
-tr_vaccine.penup()
-tr_vaccine.shape('res/medicines/medicine_0.gif')
+tr_medicine = Turtle()
+tr_medicine.penup()
+tr_medicine.shape('res/medicines/medicine_0.gif')
 degree = 0.0
 
 
@@ -42,7 +42,7 @@ def tap(x, y):
         speed.x = (x + 200) / 10
         speed.y = (y + 200) / 10
         degree = math.atan2(y+199,x+199)/math.pi*180
-        tr_vaccine.shape(f'res/medicines/medicine_{round(degree/10)}.gif')
+        tr_medicine.shape(f'res/medicines/medicine_{round(degree/10)}.gif')
 
 
 def inside(xy):
@@ -59,7 +59,7 @@ def draw():
         
 
     if inside(ball):
-        tr_vaccine.goto(ball.x, ball.y)
+        tr_medicine.goto(ball.x, ball.y)
 
     update()
 
