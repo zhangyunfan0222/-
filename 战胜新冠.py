@@ -18,6 +18,10 @@ wn.addshape('res/virus.gif')
 for i in range(10):
     wn.addshape(f'res/medicines/medicine_{i}.gif')
 
+wn.addshape('res/campus/girl.gif')
+wn.addshape('res/campus/boy.gif')
+
+
 
 ball = vector(-200, -200)
 speed = vector(0, 0)
@@ -26,10 +30,27 @@ turtles = []
 
 
 tr_medicine = Turtle()
+tr_medicine.ht()
 tr_medicine.penup()
 tr_medicine.shape('res/medicines/medicine_0.gif')
+tr_medicine.goto(-199, -199)
+tr_medicine.st()
 degree = 0.0
 
+
+tr_girl = Turtle()
+tr_girl.ht()
+tr_girl.penup()
+tr_girl.shape('res/campus/girl.gif')
+tr_girl.goto(-160, 100)
+tr_girl.st()
+
+tr_boy = Turtle()
+tr_boy.ht()
+tr_boy.penup()
+tr_boy.shape('res/campus/boy.gif')
+tr_boy.goto(-160, -100)
+tr_boy.st()
 
 
 def tap(x, y):
