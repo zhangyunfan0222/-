@@ -3,6 +3,8 @@
 #        https://grantjenks.com/docs/freegames/#cannon
 # 3. 添加新冠病毒图片
 # 4. 发射疫苗，干掉病毒
+# 5. 显示装态
+# 6. 显示结果
 
 
 from random import randrange
@@ -61,13 +63,11 @@ def init_turtles():
 
     tr_final.ht()
     tr_final.penup()
-    tr_final.goto(-180, 0)
+    tr_final.goto(-190, 0)
 
 
 def tap(x, y):
     """Respond to screen tap."""
-    
-    
     if not inside(ball):
         ball.x = -199
         ball.y = -199
@@ -99,7 +99,7 @@ def draw():
     if kill_virus == total_virus:
         tr_final.clear()
         tr_final.color("#c69320")
-        tr_final.write(f"战胜新冠病毒，胜利！", font=('Arial', 30, 'normal'))
+        tr_final.write(f"战胜新冠病毒，胜利！", font=('Arial', 26, 'bold'))
         
     update()
 
@@ -135,11 +135,13 @@ def move():
             kill_virus = kill_virus + 1
             break
             
-
     draw()
 
     for target in targets:
         if not inside(target):
+            tr_final.clear()
+            tr_final.color("#990f02")
+            tr_final.write(f"已被感染，请马上治疗！", font=('Arial', 26, 'bold'))
             return
 
     ontimer(move, 10)
