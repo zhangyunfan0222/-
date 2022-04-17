@@ -16,7 +16,7 @@ wn = Screen()
 wn.addshape('res/virus.gif')
 
 for i in range(10):
-    wn.addshape(f'res/vaccines/vaccine_{i}.gif')
+    wn.addshape(f'res/medicines/medicine_{i}.gif')
 
 
 ball = vector(-200, -200)
@@ -27,7 +27,7 @@ turtles = []
 
 tr_vaccine = Turtle()
 tr_vaccine.penup()
-tr_vaccine.shape('res/vaccines/vaccine_0.gif')
+tr_vaccine.shape('res/medicines/medicine_0.gif')
 degree = 0.0
 
 
@@ -42,7 +42,7 @@ def tap(x, y):
         speed.x = (x + 200) / 10
         speed.y = (y + 200) / 10
         degree = math.atan2(y+199,x+199)/math.pi*180
-        tr_vaccine.shape(f'res/vaccines/vaccine_{round(degree/10)}.gif')
+        tr_vaccine.shape(f'res/medicines/medicine_{round(degree/10)}.gif')
 
 
 def inside(xy):
