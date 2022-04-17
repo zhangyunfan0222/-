@@ -25,6 +25,7 @@ tr_medicine_degree = 0.0
 tr_girl = Turtle()
 tr_boy = Turtle()
 tr_status = Turtle()
+tr_final  = Turtle()
 
 def add_shapes():
     addshape('res/virus.gif')
@@ -58,6 +59,10 @@ def init_turtles():
     tr_status.penup()
     tr_status.goto(-100, -199)
 
+    tr_final.ht()
+    tr_final.penup()
+    tr_final.goto(-180, 0)
+
 
 def tap(x, y):
     """Respond to screen tap."""
@@ -90,9 +95,13 @@ def draw():
 
     tr_status.clear()
     tr_status.write(f"打败新冠病毒:{kill_virus}, 剩下新冠病毒：{total_virus - kill_virus}")
-    
-    update()
 
+    if kill_virus == total_virus:
+        tr_final.clear()
+        tr_final.color("#c69320")
+        tr_final.write(f"战胜新冠病毒，胜利！", font=('Arial', 30, 'normal'))
+        
+    update()
 
 def move():
     """Move ball and targets."""
