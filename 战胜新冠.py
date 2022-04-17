@@ -15,12 +15,16 @@ ball = vector(-200, -200)
 speed = vector(0, 0)
 targets = []
 turtles = []
+
 total_virus = 100
 current_virus = 0
+kill_virus = 0
+
 tr_medicine = Turtle()
 tr_medicine_degree = 0.0
 tr_girl = Turtle()
 tr_boy = Turtle()
+tr_status = Turtle()
 
 def add_shapes():
     addshape('res/virus.gif')
@@ -49,6 +53,10 @@ def init_turtles():
     tr_boy.shape('res/campus/boy.gif')
     tr_boy.goto(-160, -100)
     tr_boy.st()
+
+    tr_status.ht()
+    tr_status.penup()
+    tr_status.goto(-100, -199)
 
 
 def tap(x, y):
@@ -80,12 +88,15 @@ def draw():
     if inside(ball):
         tr_medicine.goto(ball.x, ball.y)
 
+    tr_status.clear()
+    tr_status.write(f"打败新冠病毒:{kill_virus}, 剩下新冠病毒：{total_virus - kill_virus}")
+    
     update()
 
 
 def move():
     """Move ball and targets."""
-    global total_virus, current_virus
+    global total_virus, current_virus, kill_virus
     if randrange(10) == 0 and current_virus < total_virus:
         y = randrange(-150, 150)
         target = vector(200, y)
@@ -112,6 +123,7 @@ def move():
             del targets[i]
             turtles[i].ht()
             del turtles[i]
+            kill_virus = kill_virus + 1
             break
             
 
