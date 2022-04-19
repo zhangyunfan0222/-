@@ -1,0 +1,1 @@
+pyinstaller -F --add-data="res/virus.gif;res" --add-data="res/campus/*.gif;res/campus"  --add-data="res/medicines/*.gif;res/medicines" 战胜新冠.pyw 

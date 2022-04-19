@@ -1,8 +1,14 @@
 from random import randrange
 from turtle import *
 from utils import vector
-import math
+import math, sys, os
 
+if getattr(sys, 'frozen', False):
+    basedir = sys._MEIPASS
+else:
+    basedir = os.path.dirname(os.path.abspath(__file__))
+
+basedir = basedir + "/"
 
 ball = vector(-200, -200)
 speed = vector(0, 0)
@@ -21,30 +27,30 @@ tr_status = Turtle()
 tr_final  = Turtle()
 
 def add_shapes():
-    addshape('res/virus.gif')
+    addshape(basedir + 'res/virus.gif')
 
     for i in range(10):
-        addshape(f'res/medicines/medicine_{i}.gif')
+        addshape(basedir + f'res/medicines/medicine_{i}.gif')
 
-    addshape('res/campus/girl.gif')
-    addshape('res/campus/boy.gif')
+    addshape(basedir + 'res/campus/girl.gif')
+    addshape(basedir + 'res/campus/boy.gif')
 
 def init_turtles():
     tr_medicine.ht()
     tr_medicine.penup()
-    tr_medicine.shape('res/medicines/medicine_0.gif')
+    tr_medicine.shape(basedir + 'res/medicines/medicine_0.gif')
     tr_medicine.goto(-199, -199)
     tr_medicine.st()
 
     tr_girl.ht()
     tr_girl.penup()
-    tr_girl.shape('res/campus/girl.gif')
+    tr_girl.shape(basedir + 'res/campus/girl.gif')
     tr_girl.goto(-160, 100)
     tr_girl.st()
 
     tr_boy.ht()
     tr_boy.penup()
-    tr_boy.shape('res/campus/boy.gif')
+    tr_boy.shape(basedir + 'res/campus/boy.gif')
     tr_boy.goto(-160, -100)
     tr_boy.st()
 
@@ -64,7 +70,7 @@ def tap(x, y):
         speed.x = (x + 200) / 10
         speed.y = (y + 200) / 10
         tr_medicine_degree = math.atan2(y+199,x+199)/math.pi*180
-        tr_medicine.shape(f'res/medicines/medicine_{round(tr_medicine_degree/10)}.gif')
+        tr_medicine.shape(basedir + f'res/medicines/medicine_{round(tr_medicine_degree/10)}.gif')
 
 
 def inside(xy):
@@ -100,7 +106,7 @@ def move():
 
         tr = Turtle()
         tr.penup()
-        tr.shape('res/virus.gif')
+        tr.shape(basedir + 'res/virus.gif')
         tr.goto(target.x, target.y)
         turtles.append(tr)
 
