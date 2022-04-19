@@ -58,7 +58,6 @@ def init_turtles():
 
 
 def tap(x, y):
-    """Respond to screen tap."""
     if not inside(ball):
         ball.x = -199
         ball.y = -199
@@ -69,12 +68,10 @@ def tap(x, y):
 
 
 def inside(xy):
-    """Return True if xy within screen."""
     return -200 < xy.x < 200 and -200 < xy.y < 200
 
 
 def draw():
-    """Draw ball and targets."""
     clear()
 
     for i, target in enumerate(targets):
@@ -95,7 +92,6 @@ def draw():
     update()
 
 def move():
-    """Move ball and targets."""
     global total_virus, current_virus, kill_virus
     if randrange(10) == 0 and current_virus < total_virus:
         y = randrange(-150, 150)
